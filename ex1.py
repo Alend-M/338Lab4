@@ -66,7 +66,10 @@ class LinkedList:
             current = current.getNext()
         print(printContainer)
 
-    
+    def randomInputs(self, length, data):
+        for i in range(length):
+            self.addTail(data)
+        return self.head.getData()
 
     def size(self):
         current = self.head
@@ -108,6 +111,7 @@ class IntArray:
         return self.array[random.randint(0,len(self.array)-1)]
 
 linkedList = LinkedList()
+
 array = IntArray(100)
 num = array.randomInputs()
 print(num)
