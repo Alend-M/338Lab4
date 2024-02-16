@@ -30,6 +30,7 @@ class LinkedList:
         new_node = Node(data)
         if self.head is None:
             self.head = new_node
+            current = self.head
         else:
             current = self.head
         while current.getNext() is not None:
@@ -66,9 +67,9 @@ class LinkedList:
             current = current.getNext()
         print(printContainer)
 
-    def randomInputs(self, length, data):
+    def randomInputs(self, length):
         for i in range(length):
-            self.addTail(data)
+            self.addTail(random.randint(0,100))
         return self.head.getData()
 
     def size(self):
@@ -111,15 +112,17 @@ class IntArray:
         return self.array[random.randint(0,len(self.array)-1)]
 
 linkedList = LinkedList()
+num1 = linkedList.randomInputs(100)
+print(num1)
+print(linkedList.binary_search(num1))
 
 array = IntArray(100)
 num = array.randomInputs()
 print(num)
 print(array.binary_search(num))
-array.display()
 
 #1.4: The linked list binary search has a O(nlogn). This is because the
 #     searching algorithm first iterates through the nodes which is O(n) and then conducts binary_search
 #     which is O(logn). All together a big of of O(nlogn)
 
-
+#TODO: FIX ADD NEXT FOR LINKEDLIST TO GEENERATE A VRAIBLE SIZE
