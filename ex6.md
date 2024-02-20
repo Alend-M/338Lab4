@@ -4,17 +4,9 @@ between arrays (or lists in python) and Linked Lists.
 1. Compare advantages and disadvantages of arrays vs linked list
 (complexity of task completion)
 
-Arrays:
-Advantages 
-- O(1) time complexity in terms of accessing elements because they are indexed.
-(Random access)
-Disadvantages
-- 
-
-Linked-lists:
-Advantages,
-Disadvantages
-- O(n) complexity to transverse, so slower than arrays
+- Linked lists take O(1) time complexity for insertion or deletion while arrays takee O(n).
+- Searching through arrays for elements is faster as it takes O(1) complexity (because it's
+indexed) vs O(n) for linked list.
 
 
 2. For arrays, we are interested in implementing a replace function
@@ -27,7 +19,17 @@ sort function, given the list of sort functions below, state the
 feasibility of using each one of them and elaborate why is it
 possible or not to use them. 
     1. Insertion sort
+        - O(n^2) time complexity because you use a loop to traverse the list n times, and in each
+        loop you call the sort function, which itself is O(n).
+        - No extra space allocation
+        - Good for nearly sorted lists. Both sorts are good for small inputs.
     2. Merge sort
+        - Better choice.
+        - O(nlogn) time complexity (faster than insertion, efficient in large inputs)
+        - No extra space allocation
+        - Since merge sort does not depend on random access/indexes, it's better for linked list than
+        insertion sort which involves swapping elements with their adjacent if they're out of order.
 
 4. Also show the expected complexity for each and how it differs from
-applying it to a regular array 
+applying it to a regular array.
+    - vhfltudekcvlguy
