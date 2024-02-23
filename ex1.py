@@ -1,6 +1,7 @@
 #linked list in python 
 import random
-
+import timeit as ti
+import matplotlib.pyplot as plt
 class Node:
     def __init__(self, data, next=None):
         self._data = data
@@ -32,9 +33,10 @@ class LinkedList:
             self.head = new_node
         else:
             current = self.head
-        while current.getNext() is not None:
-            current = current.getNext()
-        current.setNext(new_node)
+            while current.getNext() is not None:
+                current = current.getNext()
+            current.setNext(new_node)
+
     
     def binary_search(self, item):
         current = self.head
@@ -58,17 +60,18 @@ class LinkedList:
                 low = mid + 1
         return None
 
-    def display(self):
+    def displaySorted(self):
         current = self.head
         printContainer = []
         while(current != None):
             printContainer.append(current.getData())
             current = current.getNext()
+        printContainer.sort()
         print(printContainer)
 
-    def randomInputs(self, length, data):
+    def randomInputs(self, length):
         for i in range(length):
-            self.addTail(data)
+            self.addTail(random.randint(0,100))
         return self.head.getData()
 
     def size(self):
@@ -110,13 +113,33 @@ class IntArray:
             self.array[i] = random.randint(0,100)
         return self.array[random.randint(0,len(self.array)-1)]
 
-linkedList = LinkedList()
+inputSize = [1000, 2000, 4000, 8000]
+llTimeArray = []
+aTimeArray = []
+for i in inputSize:
+    linkedListTemp = LinkedList()
+    llNumToSearch = linkedListTemp.randomInputs(i)
+    llTimeTook = ti.timeit(lambda:linkedListTemp.binary_search(llNumToSearch), number=1)
+    llTimeArray.append(llTimeTook)
+    del linkedListTemp
+    print(f"~Time took: {llTimeTook:.8}")
 
-array = IntArray(100)
-num = array.randomInputs()
-print(num)
-print(array.binary_search(num))
-array.display()
+    arrayTemp = IntArray(i)
+    aNumToSearch = arrayTemp.randomInputs()
+    aTimeTook = ti.timeit(lambda:arrayTemp.binary_search(aNumToSearch), number=1)
+    aTimeArray.append(aTimeTook)
+    del arrayTemp
+    print(f"|Time took: {aTimeTook:.8}")
+
+plt.figure(figsize=(10, 5))
+plt.plot(inputSize, llTimeArray, label='LinkedList')
+plt.plot(inputSize, aTimeArray, label='Array')
+plt.xlabel('Input Size')
+plt.ylabel('Time (seconds)')
+plt.title('Time Complexity of Binary Search on LinkedList vs Array') 
+plt.legend()
+plt.show()
+#1.6: Uses linear interpolation inbetween points to create the plot graph and its inbetween values
 
 #1.4: The linked list binary search has a O(nlogn). This is because the
 #     searching algorithm first iterates through the nodes which is O(n) and then conducts binary_search
