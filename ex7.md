@@ -7,13 +7,13 @@ def reverse(self):
         newhead = None
         prevNode = None
         for i in range(self.get_size()-1, -1, -1):
-            currNode = self.get_element_at_pos(i)
-            currNewNode = Node(currNode.data)
-            if (newhead == None):
-                newhead = currNewNode
-            else:
-                prevNode.next = currNewNode
-            prevNode = currNewNode
+                curreNode = self.get_element_at_pos(i)
+                currNewNode = self.get_element_at_pos(i)
+                if (newhead == None):
+                        newhead = currNewNode
+                else:
+                        prevNode.next = currNewNode
+                    prevNode = currNewNode
         self.head = newhead
 ## New function:
 def optimized_reverse(self):
