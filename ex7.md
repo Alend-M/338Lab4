@@ -3,6 +3,7 @@ The time complexity of the original reverse() function is O(n^2). The function e
 
 # Question 2:
 ## Old function:
+```
 def reverse(self):
         newhead = None
         prevNode = None
@@ -15,7 +16,9 @@ def reverse(self):
                         prevNode.next = currNewNode
                     prevNode = currNewNode
         self.head = newhead
+```
 ## New function:
+```
 def optimized_reverse(self):
         prev_node = None
         current_node = self.head
@@ -25,5 +28,5 @@ def optimized_reverse(self):
             prev_node = current_node
             current_node = next_node
         self.head = prev_node
-
+```
 The time complexity of the optimized reverse function is O(n). This is because the optimized version of the function only uses list traversal to reverse the linked list, which is known to have a time complexity of O(n). The optimized version is altered to use list traversal and an extra temporary variable in order to reverse the list in-place. In comparison, the unoptimized version created a new list with the data reversed. This is less efficient both in terms of time complexity and in terms of the memory usage of the program, as creating a new list would force more memory to be allocated when running the reverse function.
